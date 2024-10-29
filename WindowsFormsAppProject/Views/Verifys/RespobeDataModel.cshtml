@@ -1,0 +1,63 @@
+﻿@using BusinessServices.Dto
+@model Dictionary<int, VerifyActionReponse>;
+
+@{
+    ViewData["Title"] = "RespobeDataModel";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> Name </th>
+            <th scope="col"> Status </th>
+            <th scope="col"> Result </th>
+            <th scope="col"> Details </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var item in Model){
+
+        <tr>
+            <td scope="row"> @item.Value.Name </td>
+            <td scope="row"> @item.Value.IsSuccess </td>
+            <td scope="row"> @item.Value.Message </td>
+
+            <td scope="col">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_@item.Key">
+                         Show Details
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal_@item.Key" tabindex="-1" aria-labelledby="exampleModalLabel_@item.Key" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel_@item.Key"> Api Testing </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <pre>@Newtonsoft.Json.JsonConvert.SerializeObject(item.Value.Data, Newtonsoft.Json.Formatting.Indented)</pre>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </td>
+    
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    
+    <a asp-action="Index" asp-controller="Verifys" class="btn btn-dark">
+        Return To Back
+    </a>
+    
+</div>
+

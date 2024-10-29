@@ -1,0 +1,51 @@
+﻿@using BusinessServices.ViewModel
+@model ProjectActionParameterViewModel
+
+<div class="modal fade" id="addactionparameter">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addactionparameterLabel"> Add Action Parameter </h4>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span> X </span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" asp-action="Edit" asp-controller="ProjectActionParametersQuery">
+
+                    <div class="form-group">
+                        <label asp-for="Value">  </label>
+                        <input asp-for="Value" class="form-control" />
+                        <span asp-validation-for="Value"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProjectActionId">  </label>
+                        <input asp-for="ProjectActionId" class="form-control" />
+                        <span asp-validation-for="ProjectActionId"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ActionParameterTypeId">  </label>
+                        <select class="form-control" asp-for="ActionParameterTypeId" asp-items="@(new SelectList(Model.ActionParameterTypes,"Id","Name"))">
+                            <option></option>
+                        </select>
+                        <span asp-validation-for="ActionParameterTypeId"></span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-save="modal"> Update </button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="PlaceHolderHere">  </div>
+
+<button asp-controller="ProjectOperations" type="button" class="btn btn-primary " data-toggle="ajax-modal" data-target="#addproject"
+        data-url="@Url.Action("Create")">
+    Create
+</button>
+
+<span class="text-center" style="margin-left:40%;font-size:35px;"> Projects </span>
+
+@if (Model.Any())
+{
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">BaseUrl</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Go To Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="col-12">
+                    <td> @item.Name </td>
+                    <td> @item.BaseUrl </td>
+                    <td>
+                        <button asp-controller="ProjectOperations" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addproject"
+                                data-url="@Url.Action($"Edit/{item.Id}")">
+                            Edit
+                        </button>
+                    </td>
+
+                    <td>
+                        <a href="javascript:;" data-id="@item.Id" class="btn btn-danger js-delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-action="GetDataById"
+                           asp-controller="ProjectActionOperationWeb"
+                        asp-route-id="@item.Id"
+                        class="btn btn-danger js-url">
+                             Action
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

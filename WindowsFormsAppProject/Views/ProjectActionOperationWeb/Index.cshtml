@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ProjectAction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="PlaceHolderHere">  </div>
+
+<button asp-controller="ProjectActionOperationWeb" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addActions"
+        data-url="@Url.Action("Create")">
+    Create
+</button>
+
+<span class="text-center" style="margin-left:40%;font-size:35px;"> Actions</span>
+
+@if (Model.Any())
+{
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Action Url</th>
+                <th scope="col">ProjectId</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Go Action Parameter</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="col-10">
+                    <td> @item.Name </td>
+                    <td> @item.ActionUrl </td>
+                    <td> @item.ProjectId </td>
+                    <td>
+                        <button asp-controller="ProjectActionOperationWeb" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addActions"
+                        data-url="@Url.Action($"Edit/{item.Id}")">
+                            Edit
+                        </button>
+                    </td>
+
+                    <td>
+                        <a href="javascript:;" data-id="@item.Id" class="btn btn-danger js-deleteaction">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-action="GetIdData" asp-controller="ProjectActionParametersQuery" asp-route-id="@item.Id"
+                        class="btn btn-dark">
+                            Parameter
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

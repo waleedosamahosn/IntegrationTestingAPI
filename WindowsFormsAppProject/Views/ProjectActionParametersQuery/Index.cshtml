@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjectActionParameter>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="PlaceHolderHere">  </div>
+
+<button asp-controller="ProjectActionParametersQuery" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addactionparameter"
+        data-url="@Url.Action("Create")">
+    Create
+</button>
+
+<span class="text-center" style="margin-left:40%;font-size:35px;"> Actions Parameters </span>
+
+@if (Model.Any())
+{
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">ProjectActionId</th>
+                <th scope="col">ActionParameterTypeId</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Go Action Parameter</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="col-11">
+                    <td> @item.Value </td>
+                    <td>@item.ProjectActionId</td>
+                    <td> @item.ActionParameterTypeId </td>
+
+                    <td>
+                        <button asp-controller="ProjectActionParametersQuery" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addactionparameter"
+                                data-url="@Url.Action($"Edit/{item.Id}")">
+                            Edit
+                        </button>
+                    </td>
+
+                    <td>
+                        <a href="javascript:;" data-id="@item.Id" class="btn btn-danger js-deleteparameter">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-action="" asp-controller="" class="btn btn-dark">
+                            Type
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+  
+}

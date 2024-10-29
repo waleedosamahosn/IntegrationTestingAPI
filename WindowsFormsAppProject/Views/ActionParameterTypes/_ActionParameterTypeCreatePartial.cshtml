@@ -1,0 +1,36 @@
+﻿@using BusinessServices.ViewModel
+@model ActionParameterTypeViewModel
+
+<div class="modal fade" id="addActionparametertype">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addActionparametertypeLabel"> Add Action Parameter Type </h4>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span> X </span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" asp-action="Create" asp-controller="ActionParameterTypes">
+                    <div class="form-group">
+                        <label asp-for="Name">  </label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name"></span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-save="modal"> Save </button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

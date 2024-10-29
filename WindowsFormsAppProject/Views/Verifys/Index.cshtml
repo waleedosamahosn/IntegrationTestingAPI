@@ -1,0 +1,87 @@
+﻿@using BusinessServices.ViewModel
+@model List<ProjectActionViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center"> All Api </h2>
+
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown link
+    </a>
+    @foreach (var item in Model)
+    {
+        <ul class="dropdown-menu">
+
+                    @foreach (var project in item.Projects)
+                    {
+                        <li>
+                            <a id="@project.Name" class="dropdown-item">
+                                @project.Name
+                            </a>
+                        </li>
+                    }
+        </ul>
+    }
+</div>
+
+<br />
+
+@using (Html.BeginForm("Index", "Verifys"))
+{
+
+    <input type="submit" value="verify selected" class="btn btn-success mb-3" />
+
+    <table class="table d-none">
+        <thead>
+            <tr>
+                <th scope="col"> Id </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Check Box </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int x=0 ; x<Model.Count; x++)
+            {
+                <tr>
+                    <td scope="col"> @Model[x].Id  </td>
+                    <td scope="col"> @Model[x].Name </td>
+
+                    <td scope="col">
+                        @Html.CheckBoxFor(m => Model[x].isChecked)
+                        @Html.HiddenFor(m => Model[x].Name)
+                        @Html.HiddenFor(m => Model[x].Id)
+                        @Html.HiddenFor(m => Model[x].MethodName)
+                        @Html.HiddenFor(m => Model[x].IsAuthorized)
+                        @Html.HiddenFor(m => Model[x].ActionUrl)
+                        @Html.HiddenFor(m => Model[x].Baseurl)
+                     </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    }
+
+    @section Scripts{
+
+        <script>
+
+             $(document).ready(function () {
+
+                $('#Mobile').on("click", function () {
+                    $("table").removeClass("d-none")
+                 });
+
+
+              });
+
+        </script>
+
+    }

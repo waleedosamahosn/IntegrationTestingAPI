@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ActionParameterType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="PlaceHolderHere">  </div>
+
+<button asp-controller="ActionParameterTypes" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addActionparametertype"
+        data-url="@Url.Action("Create")">
+    Create
+</button>
+
+<span class="text-center" style="margin-left:40%;font-size:35px;"> Actions</span>
+
+@if (Model.Any())
+{
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Go Action Parameter</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="col-14">
+                    <td> @item.Name </td>
+                    <td>
+                        <button asp-controller="ActionParameterTypes" type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addActionparametertype"
+                                data-url="@Url.Action($"Edit/{item.Id}")">
+                            Edit
+                        </button>
+                    </td>
+
+                    <td>
+                        <a href="javascript:;" data-id="@item.Id" class="btn btn-danger js-deleteactiontype">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,67 @@
+﻿@using BusinessServices.ViewModel
+@model ProjectActionViewModeltwo
+
+<div class="modal fade" id="addActions">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addActionsLabel"> Add Project Action </h4>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span> X </span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" asp-action="Create" asp-controller="ProjectActionOperationWeb">
+                    <div class="form-group">
+                        <label asp-for="Name">  </label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="MethodName">  </label>
+                        <input asp-for="MethodName" class="form-control" />
+                        <span asp-validation-for="MethodName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ActionUrl">  </label>
+                        <input asp-for="ActionUrl" class="form-control" />
+                        <span asp-validation-for="ActionUrl"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProjectId">  </label>
+                        <input asp-for="ProjectId" class="form-control" />
+                        <span asp-validation-for="ProjectId"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="IsAuthorized">  </label>
+                        <input asp-for="IsAuthorized" class="form-control" />
+                        <span asp-validation-for="IsAuthorized"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="isChecked">  </label>
+                        <input asp-for="isChecked" class="form-control" />
+                        <span asp-validation-for="isChecked"></span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-save="modal"> Save </button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
